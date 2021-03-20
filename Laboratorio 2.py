@@ -19,6 +19,9 @@ def menu():
     if seleccion == 1:
         poisson()
 
+    if seleccion == 3:
+        normal()
+
 def poisson():
     resultadoslist = []
     system("cls")
@@ -28,13 +31,15 @@ def poisson():
     U = float(input("U: "))
     K = float(input("K: "))
     resultadofloat = ((U**K)*(E**(U*-1)))/factorial(K)
-    resultadoString = "P(x = "+str(K)+") = "+str(resultadofloat)
+    resultadoString = "P(K = "+str(K)+") = "+str(resultadofloat)
+
     valor =  VALORES()
     valor.valor = resultadofloat
     valor.resultado = resultadoString
     valor.k = K
 
     resultadoslist.append(valor)
+
     print(resultadoString)
     seleccion = 1
     while seleccion == 1:
@@ -44,8 +49,8 @@ def poisson():
         seleccion = int(input("continuar: "))
         if seleccion == 1:
             K = float(input("K: "))
-            resultado = ((U**K)*E**(U*-1))/factorial(K)
-            resultadoString = "P(x = "+str(K)+") = "+str(resultado)
+            resultadofloat = ((U**K)*E**(U*-1))/factorial(K)
+            resultadoString = "P(K = "+str(K)+") = "+str(resultadofloat)
 
             valor =  VALORES()
             valor.valor = resultadofloat
@@ -53,10 +58,35 @@ def poisson():
             valor.k = K
 
             resultadoslist.append(valor)
+
             print(resultadoString)
+            
         if seleccion == 2:
             print("---Resultados---")
+            porct = 0
             for x in range(len(resultadoslist)):
-                print(resultadoslist[x].resultado+"  "+str(resultadoslist[x].valor))
+                porct+= resultadoslist[x].valor
+                print(resultadoslist[x].resultado+" = "+"{:^10.8f}".format(resultadoslist[x].valor*100)+" %")
+            print("en porcentaje: "+str("{:^10.8f}".format(float(porct*100)))+" %")
+            print("1) SI\n2)NO, SALIR")
+            seleccionmenu = int(input("quieres volver al menu?: ")) 
+            if seleccionmenu == 1:
+                menu()
+
+def normal():
+    system("cls")
+    print("NORMAL")
+    print("a continuación deberas proporcionar los siguientes datos")
+    X = float(input("X: "))
+    U = float(input("U: "))
+    O = float(input("O: "))
+    resultadofloat = (X-U)/O
+    resultadoString = "Z = "+str(resultadofloat)
+
+
+    print(resultadoString)
+    seleccionmenu = int(input("¿quieres volver al menu?: ")) 
+    if seleccionmenu == 1:
+        menu()
 
 menu()    
