@@ -2,6 +2,11 @@ from os import system
 from math import factorial
 import math
 
+class VALORES (object):
+    resultado = ""
+    valor = 0.0
+    k = 0.0
+
 def menu():
     system("cls")
     print("Bienvenido al laboratorio 2")
@@ -22,9 +27,14 @@ def poisson():
     E = float(input("e: "))
     U = float(input("U: "))
     K = float(input("K: "))
-    resultado = ((U**K)*(E**(U*-1)))/factorial(K)
-    resultadoString = "P(x = "+str(K)+") = "+str(resultado)
-    resultadoslist.append(resultadoString)
+    resultadofloat = ((U**K)*(E**(U*-1)))/factorial(K)
+    resultadoString = "P(x = "+str(K)+") = "+str(resultadofloat)
+    valor =  VALORES()
+    valor.valor = resultadofloat
+    valor.resultado = resultadoString
+    valor.k = K
+
+    resultadoslist.append(valor)
     print(resultadoString)
     seleccion = 1
     while seleccion == 1:
@@ -36,9 +46,17 @@ def poisson():
             K = float(input("K: "))
             resultado = ((U**K)*E**(U*-1))/factorial(K)
             resultadoString = "P(x = "+str(K)+") = "+str(resultado)
-            resultadoslist.append(resultadoString)
+
+            valor =  VALORES()
+            valor.valor = resultadofloat
+            valor.resultado = resultadoString
+            valor.k = K
+
+            resultadoslist.append(valor)
             print(resultadoString)
         if seleccion == 2:
-            print(resultadoslist)
+            print("---Resultados---")
+            for x in range(len(resultadoslist)):
+                print(resultadoslist[x].resultado+"  "+str(resultadoslist[x].valor))
 
 menu()    
