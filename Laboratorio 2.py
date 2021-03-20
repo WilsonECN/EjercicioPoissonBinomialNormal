@@ -19,6 +19,9 @@ def menu():
     if seleccion == 1:
         poisson()
 
+    if seleccion == 2:
+        binomial()
+
     if seleccion == 3:
         normal()
 
@@ -73,6 +76,21 @@ def poisson():
             if seleccionmenu == 1:
                 menu()
 
+def binomial():
+    n = int(input("Digite número de ensayos: "))
+    k = int(input("Digite número de exitos: "))
+    p = float(input("Digite número probabilidad de exitos: "))
+
+    q=1-p
+    res=(factorial(n))/(factorial(k)*(factorial(n-k)))
+    res2=pow(p,k)*(pow(q,(n-k)))
+    resultado= (res*res2)*100
+    print("El resultado es: " +(format(resultado,'.3f')+ "%"))
+    print("1) SI\n2)NO, SALIR")
+    seleccionmenu = int(input("¿quieres volver al menu?: ")) 
+    if seleccionmenu == 1:
+        menu()
+    
 def normal():
     system("cls")
     print("NORMAL")
@@ -85,6 +103,7 @@ def normal():
 
 
     print(resultadoString)
+    print("1) SI\n2)NO, SALIR")
     seleccionmenu = int(input("¿quieres volver al menu?: ")) 
     if seleccionmenu == 1:
         menu()
